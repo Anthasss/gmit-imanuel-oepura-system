@@ -1,3 +1,5 @@
+"use client";
+
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import useKategoriPengumuman from "@/hooks/useKategoriPengumuman";
 import { Menu } from "lucide-react";
