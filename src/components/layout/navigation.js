@@ -1,5 +1,5 @@
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import useJenisPengumuman from "@/hooks/useJenisPengumuman";
+import useKategoriPengumuman from "@/hooks/useKategoriPengumuman";
 import { Menu } from "lucide-react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
@@ -9,10 +9,11 @@ export default function Navigation({ children }) {
     { name: "Home", path: "/" },
     { name: "Gallery", path: "/gallery" },
     { name: "About", path: "/about" },
+    { name: "Sejarah", path: "/sejarah" },
   ];
 
-  // Fetch jenis pengumuman data for UPP dropdown
-  const { jenisOptions: uppItems, loading: uppLoading } = useJenisPengumuman();
+  // Fetch kategori pengumuman data for UPP dropdown
+  const { kategoriOptions: uppItems, loading: uppLoading } = useKategoriPengumuman();
 
   return (
     <>
@@ -24,7 +25,7 @@ export default function Navigation({ children }) {
         />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="navbar bg-black/30 dark:bg-black/50 w-full absolute top-0 left-0 z-50 transition-all duration-300">
+          <div className="navbar bg-black/30 dark:bg-black/50 w-full fixed top-0 left-0 z-50 transition-all duration-300">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -34,9 +35,16 @@ export default function Navigation({ children }) {
                 <Menu className="w-8 h-8" />
               </label>
             </div>
-            <div className="mx-2 flex-1 px-2 text-white">
-              <p className="font-extrabold text-2xl">GMIT Imanuel</p>
-              <p className="text-2xl">Oepura</p>
+            <div className="mx-2 flex-1 px-2 text-white flex items-center gap-3">
+              <img
+                src="/logo-GMIT.png"
+                alt="GMIT Imanuel Oepura Logo"
+                className="h-12 w-12 object-contain"
+              />
+              <div>
+                <p className="font-extrabold text-2xl">GMIT Imanuel</p>
+                <p className="text-2xl">Oepura</p>
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <ThemeToggle />
