@@ -1,18 +1,19 @@
-import { Home, LogOut, User } from "lucide-react";
+import { ChevronDown, ChevronRight, Home, LogOut, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/lib/supabaseClient";
 
-export default function Sidebar({
-  menuItems,
-  uppItems = [],
-  uppLoading = false,
-}) {
+export default function Sidebar({ menuItems, uppItems = [], uppLoading = false }) {
   const router = useRouter();
   const authContext = useAuth();
   const { user, logout } = authContext || {};
+
+  // State for dropdown management
+  const [isUppOpen, setIsUppOpen] = useState(false);
+  const [openCategories, setOpenCategories] = useState(new Set());
 
   // Check if current route is a role-based dashboard page
   const isInDashboard =
@@ -39,6 +40,24 @@ export default function Sidebar({
     } else {
       await supabase.auth.signOut();
     }
+  };
+
+  // Toggle UPP dropdown
+  const toggleUpp = () => {
+    setIsUppOpen(!isUppOpen);
+  };
+
+  // Toggle category dropdown
+  const toggleCategory = (categoryId) => {
+    setOpenCategories((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(categoryId)) {
+        newSet.delete(categoryId);
+      } else {
+        newSet.add(categoryId);
+      }
+      return newSet;
+    });
   };
 
   return (
@@ -74,75 +93,100 @@ export default function Sidebar({
               ))}
             </div>
 
-            {/* UPP Section */}
+            {/* UPP Section with Dropdown */}
             <div className="space-y-2">
-              <div className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-md bg-gray-50 dark:bg-gray-700/30">
-                UPP
-              </div>
+              {/* UPP Dropdown Button */}
+              <button
+                onClick={toggleUpp}
+                className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-md bg-gray-50 dark:bg-gray-700/30 hover:bg-gray-100 dark:hover:bg-gray-600/50 transition-all duration-200"
+              >
+                <span>UPP</span>
+                {isUppOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+              </button>
 
-              {uppLoading ? (
-                <div className="flex justify-center py-4">
-                  <div className="flex flex-col items-center space-y-1">
-                    <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
-                      Loading...
-                    </span>
-                  </div>
-                </div>
-              ) : uppItems.length > 0 ? (
-                <div className="space-y-0.5">
-                  {uppItems.map((kategori) => (
-                    <div key={kategori.id} className="space-y-0.5">
-                      {/* Category Header */}
-                      <Link
-                        className="flex items-center px-3 py-1.5 text-sm font-medium text-gray-800 dark:text-gray-200 rounded-md hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-200"
-                        href={`/upp/${kategori.nama.toLowerCase().replace(/\s+/g, "-")}`}
-                        onClick={closeSidebar}
-                      >
-                        {kategori.nama}
-                      </Link>
-                      {/* Subcategories */}
-                      {kategori.jenisPengumuman &&
-                        kategori.jenisPengumuman.length > 0 && (
-                          <div className="ml-8 space-y-0.5">
-                            {kategori.jenisPengumuman.map((jenis) => (
-                              <Link
-                                key={jenis.id}
-                                className="flex items-center px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-gray-200 transition-all duration-200"
-                                href={`/upp/${kategori.nama.toLowerCase().replace(/\s+/g, "-")}/${jenis.nama.toLowerCase().replace(/\s+/g, "-")}`}
-                                onClick={closeSidebar}
-                              >
-                                {jenis.nama}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
+              {/* UPP Dropdown Content */}
+              {isUppOpen && (
+                <div className="ml-4 space-y-1 border-l border-gray-200 dark:border-gray-600 pl-2">
+                  {uppLoading ? (
+                    <div className="flex justify-center py-4">
+                      <div className="flex flex-col items-center space-y-1">
+                        <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+                        <span className="text-xs text-gray-500 dark:text-gray-400">Loading...</span>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="px-3 py-4 text-center">
-                  <div className="text-gray-400 dark:text-gray-500">
-                    <svg
-                      className="w-8 h-8 mx-auto mb-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                      />
-                    </svg>
-                    <p className="text-xs font-medium">
-                      No categories available
-                    </p>
-                    <p className="text-xs mt-0.5 opacity-75">
-                      Categories will appear here when added
-                    </p>
-                  </div>
+                  ) : uppItems.length > 0 ? (
+                    <div className="space-y-1">
+                      {uppItems.map((kategori) => (
+                        <div
+                          key={kategori.id}
+                          className="space-y-1"
+                        >
+                          {/* Check if category has subcategories */}
+                          {kategori.jenisPengumuman && kategori.jenisPengumuman.length > 0 ? (
+                            // Category with subcategories - make it a dropdown
+                            <div>
+                              <button
+                                onClick={() => toggleCategory(kategori.id)}
+                                className="w-full flex items-center justify-between px-3 py-1.5 text-sm font-medium text-gray-800 dark:text-gray-200 rounded-md hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-200"
+                              >
+                                <span>{kategori.nama}</span>
+                                {openCategories.has(kategori.id) ? (
+                                  <ChevronDown className="w-3 h-3" />
+                                ) : (
+                                  <ChevronRight className="w-3 h-3" />
+                                )}
+                              </button>
+
+                              {/* Subcategories */}
+                              {openCategories.has(kategori.id) && (
+                                <div className="ml-6 space-y-0.5 border-l border-gray-200 dark:border-gray-600 pl-2">
+                                  {kategori.jenisPengumuman.map((jenis) => (
+                                    <Link
+                                      key={jenis.id}
+                                      className="block px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-gray-200 transition-all duration-200"
+                                      href={`/upp/${kategori.nama.toLowerCase().replace(/\s+/g, "-")}/${jenis.nama.toLowerCase().replace(/\s+/g, "-")}`}
+                                      onClick={closeSidebar}
+                                    >
+                                      {jenis.nama}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            // Category without subcategories - direct link
+                            <Link
+                              className="block px-3 py-1.5 text-sm font-medium text-gray-800 dark:text-gray-200 rounded-md hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-200"
+                              href={`/upp/${kategori.nama.toLowerCase().replace(/\s+/g, "-")}`}
+                              onClick={closeSidebar}
+                            >
+                              {kategori.nama}
+                            </Link>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="px-3 py-4 text-center">
+                      <div className="text-gray-400 dark:text-gray-500">
+                        <svg
+                          className="w-8 h-8 mx-auto mb-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                          />
+                        </svg>
+                        <p className="text-xs font-medium">No categories available</p>
+                        <p className="text-xs mt-0.5 opacity-75">Categories will appear here when added</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
