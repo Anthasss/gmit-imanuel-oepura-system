@@ -50,7 +50,7 @@ export default function Gallery() {
           objectFit="cover"
           src="/header/gallery.webp"
         />
-        <h1 className="absolute text-8xl font-bold mt-4 text-white">Galeri</h1>
+        <h1 className="absolute text-8xl font-bold mt-4 text-white">Gallery</h1>
       </div>
       <div className="bg-gray-500 min-h-screen">
         {loading ? (

@@ -7,22 +7,24 @@ export default function JoinUs() {
       {/* texts */}
       <div className="flex flex-col justify-center text-gray-800 dark:text-white flex-1 transition-colors duration-300">
         <h2 className="divider divider-start divider-neutral dark:divider-gray text-4xl font-bold mb-4 tracking-wide font-sans">
-          Mari Bergabung
+          Join Us
         </h2>
         <p className="text-xl font-medium mb-4 text-gray-700 dark:text-gray-200">
-          Bersama dalam kasih dan firman Allah
+          Together in love & God&apos;s word
         </p>
         <div className="mb-6">
           <div className="flex items-center text-gray-600 dark:text-gray-300 mb-2">
             <Clock className="h-5 w-5 mr-2" />
-            <span>Ibadah Minggu pukul 08.00 dan 17.00 WITA</span>
+            <span>Join Us Every Sunday At 08.00 AM and 05.00 PM</span>
           </div>
           <div className="flex items-center text-gray-600 dark:text-gray-300">
             <MapPin className="h-5 w-5 mr-2" />
             <span>GMIT Imanuel Oepura</span>
           </div>
         </div>
-        {/* <button className="btn btn-success btn-wide self-start rounded-full">More Info</button> */}
+        <button className="btn btn-success btn-wide self-start rounded-full">
+          More Info
+        </button>
       </div>
 
       {/* image */}

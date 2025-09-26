@@ -2,15 +2,14 @@ export default function Footer() {
   return (
     <footer className="footer sm:footer-horizontal bg-base-300 dark:bg-gray-800 text-base-content dark:text-gray-200 p-10 transition-colors duration-200">
       <nav className="flex flex-col items-start">
-        <img
-          alt="Logo"
-          className="mb-4"
-          src="/logo.png"
-        />
-        <p>Sungguh, alangkah baiknya dan indahnya, apabila saudara-saudara diam bersama dengan rukun!</p>
+        <img alt="Logo" className="mb-4" src="/logo.png" />
+        <p>
+          Sungguh, alangkah baiknya dan indahnya, apabila saudara-saudara diam
+          bersama dengan rukun!
+        </p>
       </nav>
       <nav>
-        <h6 className="footer-title">Kontak Kami</h6>
+        <h6 className="footer-title">Contact Us</h6>
         <div className="grid grid-flow-row gap-2">
           <p>0822-4793-0215</p>
           <p>Kota Kupang, NTT 85142</p>
@@ -18,7 +17,7 @@ export default function Footer() {
         </div>
       </nav>
       <nav>
-        <h6 className="footer-title">Ikuti Kami</h6>
+        <h6 className="footer-title">Follow Us</h6>
         <div className="grid grid-flow-col gap-4">
           <a
             href="https://www.facebook.com/GMITJIO/"

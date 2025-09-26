@@ -19,7 +19,7 @@ export default function About() {
     <div className="bg-gray-50">
       <PageTitle
         description="GMIT Jemaat Imanuel Oepura (JIO) - Gereja Masehi Injili di Timor yang melayani jemaat dengan penuh kasih dan dedikasi. Bergabunglah bersama kami dalam ibadah, persekutuan, dan pelayanan."
-        title="Tentang Kami"
+        title="About Us"
       />
       {/* Hero Section with Parallax */}
       <div className="relative h-screen flex justify-center items-center overflow-hidden">
@@ -43,8 +43,8 @@ export default function About() {
             </h1>
             <div className="w-32 h-1 bg-gradient-to-r from-blue-400 via-white to-indigo-400 mx-auto mb-8 rounded-full" />
             <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed font-light">
-              GMIT Imanuel Oepura - Gereja yang hidup, bertumbuh dalam iman, pengharapan dan kasih, melayani dengan
-              budaya lokal yang kaya
+              GMIT Imanuel Oepura - Gereja yang hidup, bertumbuh dalam iman,
+              pengharapan dan kasih, melayani dengan budaya lokal yang kaya
             </p>
           </div>
         </div>
@@ -61,11 +61,14 @@ export default function About() {
       <div className="py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <div className="animate-fade-in-up">
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 text-gray-800">Selamat Datang di GMIT Imanuel Oepura</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-8 text-gray-800">
+              Selamat Datang di GMIT Imanuel Oepura
+            </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Kami adalah komunitas iman yang berkomitmen untuk hidup bersama dalam kasih Kristus, melayani sesama, dan
-              melestarikan budaya lokal Timor. Bergabunglah dengan keluarga besar kami dalam perjalanan iman yang
-              bermakna.
+              Kami adalah komunitas iman yang berkomitmen untuk hidup bersama
+              dalam kasih Kristus, melayani sesama, dan melestarikan budaya
+              lokal Timor. Bergabunglah dengan keluarga besar kami dalam
+              perjalanan iman yang bermakna.
             </p>
           </div>
         </div>
@@ -80,10 +83,13 @@ export default function About() {
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 py-20 px-4 text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Bergabunglah Bersama Kami</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Bergabunglah Bersama Kami
+          </h2>
           <p className="text-lg md:text-xl mb-8 opacity-90">
-            Jadilah bagian dari komunitas yang hidup dalam kasih dan pelayanan. Kami mengundang Anda untuk merasakan
-            kehangatan keluarga GMIT Imanuel Oepura.
+            Jadilah bagian dari komunitas yang hidup dalam kasih dan pelayanan.
+            Kami mengundang Anda untuk merasakan kehangatan keluarga GMIT
+            Imanuel Oepura.
           </p>
           <div className="space-y-4 md:space-y-0 md:space-x-4 md:flex md:justify-center">
             <a
