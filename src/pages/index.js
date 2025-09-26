@@ -26,12 +26,10 @@ export default function Home() {
               src="/header/f92411b3.webp"
             />
             <div className="absolute flex flex-col p-8">
-              <p className="text-white text-2xl font-bold">Welcome to</p>
-              <h1 className="text-white text-4xl font-bold">
-                GMIT Imanuel Oepura
-              </h1>
+              <p className="text-white text-2xl font-bold">Selamat Datang ke</p>
+              <h1 className="text-white text-4xl font-bold">GMIT Imanuel Oepura</h1>
               <p className="text-white text-base">
-                Together in love, growing in faith, serving in hope.
+                Bersama dalam kasih, bertumbuh dalam iman, melayani dengan penuh harapan.
               </p>
             </div>
           </div>
@@ -69,7 +67,10 @@ export default function Home() {
                 limit={6}
                 title="Jadwal Ibadah Keluarga"
               />
-              <ScheduleRow limit={4} title="Semua Jadwal Ibadah" />
+              <ScheduleRow
+                limit={4}
+                title="Semua Jadwal Ibadah"
+              />
             </div>
           </div>
 
@@ -93,12 +94,10 @@ export default function Home() {
                 src="/header/f92411b3.webp"
               />
               <div className="absolute flex flex-col p-16">
-                <p className="text-white text-4xl font-bold">Welcome to</p>
-                <h1 className="text-white text-6xl font-bold">
-                  GMIT Imanuel Oepura
-                </h1>
+                <p className="text-white text-4xl font-bold">Selamat Datang ke</p>
+                <h1 className="text-white text-6xl font-bold">GMIT Imanuel Oepura</h1>
                 <p className="text-white text-lg">
-                  Together in love, growing in faith, serving in hope.
+                  Bersama dalam kasih, bertumbuh dalam iman, melayani dengan penuh harapan.
                 </p>
               </div>
             </div>
@@ -136,7 +135,10 @@ export default function Home() {
                   limit={6}
                   title="Jadwal Ibadah Keluarga"
                 />
-                <ScheduleRow limit={4} title="Semua Jadwal Ibadah" />
+                <ScheduleRow
+                  limit={4}
+                  title="Semua Jadwal Ibadah"
+                />
               </div>
             </div>
 

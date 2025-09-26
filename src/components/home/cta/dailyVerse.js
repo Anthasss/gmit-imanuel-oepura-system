@@ -11,9 +11,7 @@ export default function DailyVerse() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(
-        "https://beta.ourmanna.com/api/v1/get?format=json"
-      );
+      const response = await fetch("https://beta.ourmanna.com/api/v1/get?format=json");
 
       if (!response.ok) {
         throw new Error("Failed to fetch verse");
@@ -48,7 +46,7 @@ export default function DailyVerse() {
     <div className="flex flex-col md:flex-row md:bg-gray-300 md:dark:bg-gray-700 md:rounded-2xl p-4 md:p-6 md:shadow-lg w-full md:w-3/4 mx-auto gap-4 md:gap-8 transition-colors duration-300">
       {/* Icon/Visual */}
       <div className="flex-shrink-0 flex items-center justify-center md:w-72 md:h-72 relative flex-1">
-        <div className="bg-gradient-to-br   rounded-2xl p-2 w-full h-full flex items-center justify-center overflow-hidden">
+        <div className="bg-gradient-to-br rounded-2xl p-2 w-full h-full flex items-center justify-center overflow-hidden">
           <img
             alt="Holy Bible"
             className="w-full h-full object-cover rounded-xl shadow-lg"
@@ -61,12 +59,10 @@ export default function DailyVerse() {
       <div className="flex flex-1 flex-col justify-center text-gray-800 dark:text-white transition-colors duration-300">
         <div className="flex items-center gap-3 mb-4">
           <Book className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-          <h2 className="text-4xl font-bold tracking-wide font-sans text-gray-800 dark:text-white">
-            Daily Verse
-          </h2>
+          <h2 className="text-4xl font-bold tracking-wide font-sans text-gray-800 dark:text-white">Ayat Harian</h2>
         </div>
         <p className="text-lg font-medium mb-6 text-gray-700 dark:text-gray-200">
-          Every day, let us be strengthened by God's Word.
+          Dikuatkan oleh firman Tuhan setiap hari.
         </p>
 
         {loading ? (
@@ -90,12 +86,8 @@ export default function DailyVerse() {
             disabled={loading}
             onClick={fetchVerse}
           >
-            {loading ? (
-              <span className="loading loading-spinner loading-sm" />
-            ) : (
-              <RefreshCw className="w-4 h-4" />
-            )}
-            {loading ? "Loading..." : "New Verse"}
+            {loading ? <span className="loading loading-spinner loading-sm" /> : <RefreshCw className="w-4 h-4" />}
+            {loading ? "Memuat..." : "Ayat Baru"}
           </button>
 
           {verse?.verseurl && (
