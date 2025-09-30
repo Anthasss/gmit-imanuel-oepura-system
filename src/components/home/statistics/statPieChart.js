@@ -1,7 +1,15 @@
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
 const RADIAN = Math.PI / 180;
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8", "#82ca9d"];
+
+// Function to generate a random color
+const generateColor = (index) => {
+  // Generate colors with good contrast and saturation
+  const hue = (index * 137.508) % 360; // Golden angle approximation for good distribution
+  const saturation = 70 + (index % 3) * 10; // 70%, 80%, or 90%
+  const lightness = 50 + (index % 2) * 10; // 50% or 60%
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+};
 
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -83,7 +91,7 @@ export default function StatPieChart({
                 {data.map((entry, index) => (
                   <Cell
                     key={`cell-${entry.name}`}
-                    fill={COLORS[index % COLORS.length]}
+                    fill={generateColor(index)}
                   />
                 ))}
               </Pie>
@@ -99,9 +107,14 @@ export default function StatPieChart({
             >
               <div
                 className="w-2.5 h-2.5 mr-1.5"
-                style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                style={{ backgroundColor: generateColor(index) }}
               ></div>
-              <span className="text-white dark:text-gray-200" style={{ fontSize: sizing.fontSize }}>{entry.name}</span>
+              <span
+                className="text-white dark:text-gray-200"
+                style={{ fontSize: sizing.fontSize }}
+              >
+                {entry.name}
+              </span>
             </div>
           ))}
         </div>
